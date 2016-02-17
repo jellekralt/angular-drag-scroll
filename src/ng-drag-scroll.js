@@ -20,6 +20,7 @@
                 var onDragStart = $parse($attributes.onDragStart);
                 var onDragEnd = $parse($attributes.onDragEnd);
                 var axis = $attributes.axis || false;
+                var excludedClasses = $attributes.dragScrollExcludedClasses.split(',') || false;
                 var startClientX;
                 var startClientY;
                 var lastClientX;
@@ -52,6 +53,11 @@
                  * @param {object} e MouseDown event
                  */
                 function handleMouseDown (e) {
+                    for (var i= 0; i<excludedClasses.length; i++) {
+                        if (angular.element(e.target).hasClass(excludedClasses[i])) {
+                            return false;
+                        }
+                    }
 
                     $scope.$apply(function() {
                         onDragStart($scope);
