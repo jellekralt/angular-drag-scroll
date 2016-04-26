@@ -49,14 +49,25 @@
                 }
 
                 /**
+                 * Check if event target is excluded
+                 */
+                function isExcluded (e) {
+                    for (var i= 0; i<excludedClasses.length; i++) {
+                        if (angular.element(e.target).hasClass(excludedClasses[i])) {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                }
+
+                /**
                  * Handles mousedown event
                  * @param {object} e MouseDown event
                  */
                 function handleMouseDown (e) {
-                    for (var i= 0; i<excludedClasses.length; i++) {
-                        if (angular.element(e.target).hasClass(excludedClasses[i])) {
-                            return false;
-                        }
+                    if (isExcluded(e)) {
+                        return false;
                     }
 
                     $scope.$apply(function() {
@@ -82,6 +93,10 @@
                  * @param {object} e MouseUp event
                  */
                 function handleMouseUp (e) {
+                    if (isExcluded(e)) {
+                        return false;
+                    }
+
                     var selectable = ('drag-scroll-text' in e.target.attributes);
                     var withinXConstraints = (e.clientX >= (startClientX - allowedClickOffset) && e.clientX <= (startClientX + allowedClickOffset));
                     var withinYConstraints = (e.clientY >= (startClientY - allowedClickOffset) && e.clientY <= (startClientY + allowedClickOffset));
@@ -133,6 +148,10 @@
                  * @param {object} element Selected element
                  */
                 function selectText (element) {
+                    if (isExcluded(e)) {
+                        return false;
+                    }
+
                     if ($window.document.selection) {
                         var range = $window.document.body.createTextRange();
                         range.moveToElementText(element);
@@ -148,6 +167,10 @@
                  * Clears text selection
                  */
                 function clearSelection () {
+                    if (isExcluded(e)) {
+                        return false;
+                    }
+                    
                     if ($window.getSelection) {
                         if ($window.getSelection().empty) {  // Chrome
                             $window.getSelection().empty();
