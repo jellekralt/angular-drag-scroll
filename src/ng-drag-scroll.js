@@ -20,7 +20,11 @@
                 var onDragStart = $parse($attributes.onDragStart);
                 var onDragEnd = $parse($attributes.onDragEnd);
                 var axis = $attributes.axis || false;
-                var excludedClasses = $attributes.dragScrollExcludedClasses.split(',') || false;
+                if($attributes.dragScrollExcludedClasses){
+                    var excludedClasses = $attributes.dragScrollExcludedClasses.split(',') || false;
+                } else {
+                    var excludedClasses = false;
+                }
                 var startClientX;
                 var startClientY;
                 var lastClientX;
