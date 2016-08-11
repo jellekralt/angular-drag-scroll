@@ -22,11 +22,7 @@
                 var onDragStart = $parse($attributes.onDragStart);
                 var onDragEnd = $parse($attributes.onDragEnd);
                 var axis = $attributes.axis || false;
-                if($attributes.dragScrollExcludedClasses){
-                    var excludedClasses = $attributes.dragScrollExcludedClasses.split(',') || false;
-                } else {
-                    var excludedClasses = false;
-                }
+                var excludedClasses = $attributes.dragScrollExcludedClasses ? $attributes.dragScrollExcludedClasses.split(',') : [];
                 var startClientX;
                 var startClientY;
                 var lastClientX;
@@ -83,7 +79,7 @@
                         e.preventDefault();
                         e.stopPropagation();
                     }
-                    
+
                 }
 
                 /**
@@ -111,7 +107,7 @@
 
                         removeDragListeners();
                     }
-                    
+
                 }
 
                 /**
@@ -130,7 +126,7 @@
                         }
 
                         e.preventDefault();
-                    } 
+                    }
                 }
 
                 /**
@@ -147,12 +143,13 @@
                  * @param {object} element Selected element
                  */
                 function selectText (element) {
+                    var range;
                     if ($window.document.selection) {
-                        var range = $window.document.body.createTextRange();
+                        range = $window.document.body.createTextRange();
                         range.moveToElementText(element);
                         range.select();
                     } else if ($window.getSelection) {
-                        var range = $window.document.createRange();
+                        range = $window.document.createRange();
                         range.selectNode(element);
                         $window.getSelection().addRange(range);
                     }
