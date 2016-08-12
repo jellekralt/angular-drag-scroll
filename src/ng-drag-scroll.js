@@ -12,11 +12,9 @@
         //Usage:
         //<div drag-scroll>Lorem ipsum dolor sit amet</div>
         var directive = {
-            scope:{
-                dragScroll:'='
-            },
             restrict: 'A',
             link: function($scope, $element, $attributes, vm) {
+                var enabled = true;
                 var allowedClickOffset = 5;
                 var pushed = false;
                 var onDragStart = $parse($attributes.onDragStart);
@@ -27,6 +25,10 @@
                 var startClientY;
                 var lastClientX;
                 var lastClientY;
+
+                $scope.$watch($attributes.dragScroll, function(newValue) {
+                    enabled = newValue !== undefined ? newValue : true;
+                });
 
                 // Set event listeners
                 $element.on('mousedown', handleMouseDown);
@@ -55,7 +57,7 @@
                  * @param {object} e MouseDown event
                  */
                 function handleMouseDown (e) {
-                    if($scope.dragScroll){
+                    if(enabled){
                         for (var i= 0; i<excludedClasses.length; i++) {
                             if (angular.element(e.target).hasClass(excludedClasses[i])) {
                                 return false;
@@ -87,7 +89,7 @@
                  * @param {object} e MouseUp event
                  */
                 function handleMouseUp (e) {
-                    if($scope.dragScroll){
+                    if(enabled){
                         var selectable = ('drag-scroll-text' in e.target.attributes);
                         var withinXConstraints = (e.clientX >= (startClientX - allowedClickOffset) && e.clientX <= (startClientX + allowedClickOffset));
                         var withinYConstraints = (e.clientY >= (startClientY - allowedClickOffset) && e.clientY <= (startClientY + allowedClickOffset));
@@ -115,7 +117,7 @@
                  * @param {object} e MouseMove event
                  */
                 function handleMouseMove (e) {
-                    if($scope.dragScroll){
+                    if(enabled){
                         if (pushed) {
                             if(!axis || axis === 'x') {
                                 $element[0].scrollLeft -= (-lastClientX + (lastClientX = e.clientX));
