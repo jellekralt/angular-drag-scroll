@@ -90,7 +90,7 @@
                  */
                 function handleMouseUp (e) {
                     if(enabled){
-                        var selectable = ('drag-scroll-text' in e.target.attributes);
+                        var selectable = (e.target.attributes && 'drag-scroll-text' in e.target.attributes);
                         var withinXConstraints = (e.clientX >= (startClientX - allowedClickOffset) && e.clientX <= (startClientX + allowedClickOffset));
                         var withinYConstraints = (e.clientY >= (startClientY - allowedClickOffset) && e.clientY <= (startClientY + allowedClickOffset));
 
