@@ -1,4 +1,4 @@
-# Angular Drag to Scroll
+# Angular Drag to Scroll [![Build Status](https://travis-ci.org/jellekralt/angular-drag-scroll.svg?branch=master)](https://travis-ci.org/jellekralt/angular-drag-scroll)
 Lightweight drag to scroll directive for AngularJS
 
 ## Installation
