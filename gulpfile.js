@@ -40,10 +40,10 @@ gulp.task('watch', function() {
 gulp.task('serve', ['watch'], function() {
     browserSync.init({
         server: {
-            baseDir: './',
+            baseDir: ['./', './demo'],
             middleware: [
 				modRewrite([
-					'^/$ /demo.html'
+					'^/$ /demo/index.html'
 				])
 			]
         }

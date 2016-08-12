@@ -1,0 +1,71 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #e8edf3;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-container .row {
+  display: flex;
+
+  overflow: hidden;
+  background-color: white;
+  width: 60%;
+  height: 120px;
+  padding: 15px;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+  cursor: grab;
+}
+
+.block {
+  flex: auto;
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+}
+
+.block--blue {
+  background-color: blue;
+}
+
+.block--red {
+  background-color: red;
+}
+
+.block--yellow {
+  background-color: yellow;
+}
+
+.block--green {
+  background-color: green;
+}
+
+.block--pink {
+  background-color: pink;
+}
+
+.block--purple {
+  background-color: purple;
+}
+
+.block--orange {
+  background-color: orange;
+}
+
+.block--black {
+  background-color: black;
+}
