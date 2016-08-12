@@ -19,8 +19,7 @@ Lightweight drag to scroll directive for AngularJS
 angular.module('MyApp', ['ng-drag-scroll']);
 ```
 
-* Add an attribute set to true to an element with a scrollbar to make the content scrollable, setting the attribute to false will prevent drag to scroll behaviour.
-The attribute value can be set to a scope varibale to easily toggle between enabled and disabled.
+* Add an attribute to an element with a scrollbar to make the content scrollable. You can use the drag-scroll attribute value to switch the scrolling on/off. The value can be a variable or an expression.
 
 ```html
 <div drag-scroll="true">
