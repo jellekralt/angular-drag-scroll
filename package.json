@@ -20,6 +20,7 @@
     "ng-describe": "^1.8.0"
   },
   "scripts": {
+    "start": "gulp serve",
     "test": "node_modules/.bin/karma start karma.conf.js --single-run"
   },
   "repository": {
