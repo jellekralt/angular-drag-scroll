@@ -1,5 +1,7 @@
+var path = require('path');
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
+var Server = require('karma').Server;
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
@@ -29,6 +31,27 @@ gulp.task('lint', function() {
 	return gulp.src(config.paths.scripts)
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'));
+});
+
+gulp.task('test', ['lint'], function(done) {
+	var server = new Server({
+		configFile: path.resolve('karma.conf.js')
+	});
+
+	server.on('browser_error', function (browser, err) {
+		throw err;
+	});
+
+	server.on('run_complete', function (browsers, results) {
+		if (results.failed) {
+			throw new Error('Karma: Tests Failed');
+		}
+
+		done();
+	});
+
+
+	server.start();
 });
 
 // Watch
