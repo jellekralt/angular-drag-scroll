@@ -17,7 +17,9 @@
     "karma": "^1.2.0",
     "karma-chrome-launcher": "^1.0.1",
     "karma-jasmine": "^1.0.2",
-    "ng-describe": "^1.8.0"
+    "lodash": "^4.15.0",
+    "ng-describe": "^1.8.0",
+    "protractor": "^4.0.3"
   },
   "scripts": {
     "start": "gulp serve",
