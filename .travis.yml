@@ -5,7 +5,7 @@ node_js:
     - "6.3.1"
 script:
     - gulp test
-    - gulp test-e2e
+#    - gulp test-e2e
 before_install:
     - export CHROME_BIN=chromium-browser
     - export DISPLAY=:99.0
