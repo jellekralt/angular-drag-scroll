@@ -9,7 +9,8 @@ Lightweight drag to scroll directive for AngularJS
 * Run demo: ```npm start```
 
 ## Test
-* Run tests: ```npm test```
+* Unit tests: ```npm test```
+* E2E tests: ```npm test-e2e```
 
 ## Usage
 * Include ```ng-drag-scroll.js``` in your HTML template:
