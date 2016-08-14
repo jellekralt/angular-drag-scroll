@@ -2,7 +2,7 @@ var path = require('path');
 var _ = require('lodash');
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
-var child_process = require('child_process');
+var protractor = require("gulp-protractor").protractor;
 var Server = require('karma').Server;
 var jshint = require('gulp-jshint');
 var uglify = require('gulp-uglify');
@@ -55,15 +55,18 @@ gulp.task('test', ['lint'], function(done) {
 	server.start();
 });
 
-gulp.task('test-e2e', ['serve-e2e'], function(done) {
-	var protractor = path.resolve('node_modules/.bin/protractor');
-
-	child_process.spawn(protractor, ['./protractor.conf.js'], {
-		stdio: 'inherit'
-	}).once('close', function (code) {
-		browserSync.exit();
-		done();
-	});
+gulp.task('test-e2e', ['serve-e2e'], function() {
+	return gulp.src(['./test/e2e/**/*.js'])
+		.pipe(protractor({
+			configFile: './protractor.conf.js'
+		}))
+		.on('error', function(e) {
+			browserSync.exit();
+			throw e;
+		})
+		.on('end', function(e) {
+			browserSync.exit();
+		});
 });
 
 // Watch
@@ -73,7 +76,6 @@ gulp.task('watch', function() {
 
 // Serve
 gulp.task('serve', ['watch'], function() {
-
 	serve({
 		port: 3000
 	});
