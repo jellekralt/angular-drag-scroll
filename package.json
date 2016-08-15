@@ -2,6 +2,12 @@
   "name": "angular-drag-scroll",
   "version": "0.2.1",
   "description": "Lightweight drag to scroll directive for AngularJS",
+  "contributors": [
+    {
+      "name": "Jelle Kralt",
+      "email": "jelle@jellekralt.nl"
+    }
+  ],
   "dependencies": {
     "angular": "^1.3.20"
   },
