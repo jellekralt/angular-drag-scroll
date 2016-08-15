@@ -28,6 +28,7 @@
     "ng-describe": "^1.8.0",
     "protractor": "^4.0.3"
   },
+  "main": "./dist/ng-drag-scroll.min.js",
   "scripts": {
     "start": "gulp serve",
     "test": "node_modules/.bin/karma start karma.conf.js --single-run"
