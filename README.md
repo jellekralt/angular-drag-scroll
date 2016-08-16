@@ -2,6 +2,7 @@
 Lightweight drag to scroll directive for AngularJS
 
 ## Installation
+* npm: ```npm install angular-drag-scroll --save```
 * Bower: ```bower install angular-drag-scroll --save```
 * Download: you can just download the files from [Github](https://github.com/jellekralt/angular-drag-scroll/archive/master.zip)
 
