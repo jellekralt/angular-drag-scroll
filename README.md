@@ -1,4 +1,4 @@
-# Angular Drag to Scroll [![Build Status](https://travis-ci.org/jellekralt/angular-drag-scroll.svg?branch=master)](https://travis-ci.org/jellekralt/angular-drag-scroll)
+# Angular Drag to Scroll [![Build Status](https://travis-ci.org/jellekralt/angular-drag-scroll.svg?branch=master)](https://travis-ci.org/jellekralt/angular-drag-scroll) [![bitHound Dependencies](https://www.bithound.io/github/jellekralt/angular-drag-scroll/badges/dependencies.svg)](https://www.bithound.io/github/jellekralt/angular-drag-scroll/master/dependencies/npm)
 Lightweight drag to scroll directive for AngularJS
 
 ![Scroll](https://raw.githubusercontent.com/jellekralt/angular-drag-scroll/master/demo/ng-drag-scroll.gif)
