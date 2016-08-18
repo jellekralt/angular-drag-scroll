@@ -22,11 +22,12 @@ gulp.task('build', function() {
 		.pipe(uglify({
 			preserveComments: 'some'
 		}))
+		.pipe(gulp.dest('docs/'))
 		.pipe(rename({
 			extname: '.min.js'
 		}))
 		.pipe(gulp.dest('dist/'));
-	});
+});
 
 // Lint
 gulp.task('lint', function() {
@@ -102,7 +103,7 @@ function serve(config, done) {
 		open: true,
 		port: 3000,
 		server: {
-			baseDir: ['./', './docs'],
+			baseDir: ['./', './docs', './src'],
 			middleware: [
 				modRewrite([
 					'^/$ /docs/index.html'
