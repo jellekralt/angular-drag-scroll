@@ -3,6 +3,8 @@ Lightweight drag to scroll directive for AngularJS
 
 ![Scroll](https://raw.githubusercontent.com/jellekralt/angular-drag-scroll/master/docs/ng-drag-scroll.gif)
 
+Try it yourself at: http://jellekralt.github.io/angular-drag-scroll/
+
 ## Installation
 * npm: ```npm install angular-drag-scroll --save```
 * Bower: ```bower install angular-drag-scroll --save```
