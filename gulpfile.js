@@ -102,10 +102,10 @@ function serve(config, done) {
 		open: true,
 		port: 3000,
 		server: {
-			baseDir: ['./', './demo'],
+			baseDir: ['./', './docs'],
 			middleware: [
 				modRewrite([
-					'^/$ /demo/index.html'
+					'^/$ /docs/index.html'
 				])
 			]
 		}
