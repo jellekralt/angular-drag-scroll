@@ -106,7 +106,7 @@ function serve(config, done) {
 			baseDir: ['./', './docs', './src'],
 			middleware: [
 				modRewrite([
-					'^/$ /docs/index.html'
+					'!\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg|\\.woff|\\.woff2|\\.ttf|\\.csv /docs/index.html'
 				])
 			]
 		}

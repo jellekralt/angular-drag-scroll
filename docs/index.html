@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl" ng-app="ng-drag-scroll">
+<html lang="nl" ng-app="DemoApp">
 <head>
     <title>ng-drag-scroll</title>
     <meta charset="utf-8"/>
@@ -10,21 +10,14 @@
 </head>
 <body>
 
-<div class="flex-container">
-    <div drag-scroll="enabled" class="row">
-        <div class="block block--blue"></div>
-        <div class="block block--yellow"></div>
-        <div class="block block--red"></div>
-        <div class="block block--green"></div>
-        <div class="block block--orange"></div>
-        <div class="block block--pink"></div>
-        <div class="block block--purple"></div>
-        <div id="lastBlock" class="block block--black"></div>
-    </div>
-</div>
+<div class="flex-container" ng-view></div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
 <script src="ng-drag-scroll.js"></script>
+<script src="app/demo.app.js"></script>
+<script src="app/demo.config.js"></script>
+<script src="app/demo.controller.js"></script>
 
 </body>
 </html>
