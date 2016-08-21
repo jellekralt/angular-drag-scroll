@@ -7,8 +7,19 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" media="screen" href="demo.css" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
 </head>
-<body>
+<body class="teal lighten-5" ng-click="vm.showSidebar = false">
+
+<nav class="teal lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">ng-drag-scroll</a>
+        <ul class="right">
+            <li><a href="#/x">X-Axis</a></li>
+            <li><a href="#/y">Y-Axis</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="flex-container" ng-view></div>
 

@@ -11,6 +11,7 @@
     function DemoController($scope, $routeParams) {
         var vm = this;
 
+        vm.showSidebar = false;
         vm.orientation = $routeParams.orientation || 'x';
 
     }

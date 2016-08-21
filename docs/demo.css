@@ -3,11 +3,19 @@ html, body {
   margin: 0;
 }
 
-body {
-  background-color: #e8edf3;
+nav {
+  position: relative;
+  z-index: 100;
+}
+
+.side-nav.show {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }
 
 .flex-container {
+  position: relative;
+  top: -64px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -32,12 +40,12 @@ body {
 .flex-container .row--x {
   width: 60%;
   max-width: 800px;
-  height: 120px;
+  height: 150px;
 }
 
 .flex-container .row--y {
   display: block;
-  width: 120px;
+  width: 150px;
   height: 60%;
 }
 
