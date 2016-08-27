@@ -76,6 +76,8 @@
                     lastClientY = startClientY = e.clientY;
 
                     clearSelection();
+
+                    e.stopPropagation();
                 }
 
                 /**
