@@ -27,7 +27,7 @@
     "karma-jasmine": "^1.0.2",
     "lodash": "^4.15.0",
     "ng-describe": "^1.8.0",
-    "protractor": "^4.0.3"
+    "protractor": "^4.0.4"
   },
   "main": "./dist/ng-drag-scroll.min.js",
   "scripts": {
