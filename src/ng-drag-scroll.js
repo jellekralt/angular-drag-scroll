@@ -77,7 +77,6 @@
 
                     clearSelection();
 
-                    e.preventDefault();
                     e.stopPropagation();
                 }
 
