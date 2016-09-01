@@ -60,7 +60,7 @@
                     if(enabled){
                         for (var i= 0; i<excludedClasses.length; i++) {
                             if (angular.element(e.target).hasClass(excludedClasses[i])) {
-                                return false;
+                                return true;
                             }
                         }
 
