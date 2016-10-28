@@ -17,8 +17,8 @@
                 var enabled = true;
                 var allowedClickOffset = 5;
                 var pushed = false;
-                var onDragStart = $parse($attributes.onDragStart);
-                var onDragEnd = $parse($attributes.onDragEnd);
+                var onDragStart = $parse($attributes.ondragstart);
+                var onDragEnd = $parse($attributes.ondragend);
                 var axis = $attributes.axis || false;
                 var excludedClasses = $attributes.dragScrollExcludedClasses ? $attributes.dragScrollExcludedClasses.split(',') : [];
                 var startClientX;
