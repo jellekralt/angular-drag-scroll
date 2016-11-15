@@ -57,8 +57,11 @@ Use the onDragStart and onDragEnd events to call functions whenever the dragging
 <div drag-scroll on-drag-start="handleDragStart()" on-drag-end="handleDragEnd()">
 ```
 
-## Attributes
-Use dragScrollExcludedClasses
+### Other attributes
+Use dragScrollExcludedClasses to exclude drag scrolling for elements having certain classes. Class names should be separated using comma.
+```html
+<div drag-scroll="true" drag-scroll-excluded-classes="form-control,some-other-class"></div>
+```
 
 ## Credits / Inspiration
 * https://github.com/asvd/dragscroll
