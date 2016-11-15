@@ -30,12 +30,6 @@
                     enabled = newValue !== undefined ? newValue : true;
                 });
 
-                // Set event listeners
-                $element.on('mousedown', handleMouseDown);
-
-                // Set destroy listener
-                $scope.$on('$destroy', destroy);
-
                 /**
                  * Sets the event listeners for the mouseup and mousedown events
                  */
@@ -172,7 +166,11 @@
                     }
                 }
 
+                // Set event listeners
+                $element.on('mousedown', handleMouseDown);
 
+                // Set destroy listener
+                $scope.$on('$destroy', destroy);
             }
         };
         return directive;
