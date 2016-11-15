@@ -13,7 +13,7 @@
         //<div drag-scroll>Lorem ipsum dolor sit amet</div>
         var directive = {
             restrict: 'A',
-            link: function($scope, $element, $attributes, vm) {
+            link: function($scope, $element, $attributes) {
                 var enabled = true;
                 var allowedClickOffset = 5;
                 var pushed = false;
