@@ -13,7 +13,7 @@
         //<div drag-scroll>Lorem ipsum dolor sit amet</div>
         var directive = {
             restrict: 'A',
-            link: function($scope, $element, $attributes, vm) {
+            link: function($scope, $element, $attributes) {
                 var enabled = true;
                 var allowedClickOffset = 5;
                 var pushed = false;
@@ -29,12 +29,6 @@
                 $scope.$watch($attributes.dragScroll, function(newValue) {
                     enabled = newValue !== undefined ? newValue : true;
                 });
-
-                // Set event listeners
-                $element.on('mousedown', handleMouseDown);
-
-                // Set destroy listener
-                $scope.$on('$destroy', destroy);
 
                 /**
                  * Sets the event listeners for the mouseup and mousedown events
@@ -60,7 +54,7 @@
                     if(enabled){
                         for (var i= 0; i<excludedClasses.length; i++) {
                             if (angular.element(e.target).hasClass(excludedClasses[i])) {
-                                return false;
+                                return true;
                             }
                         }
 
@@ -172,7 +166,11 @@
                     }
                 }
 
+                // Set event listeners
+                $element.on('mousedown', handleMouseDown);
 
+                // Set destroy listener
+                $scope.$on('$destroy', destroy);
             }
         };
         return directive;
