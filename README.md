@@ -51,10 +51,10 @@ Use the axis attribute to lock the dragging to a specific axis. By default, both
 ```
 
 ### Events
-Use the onDragStart and onDragEnd events to call functions whenever the dragging starts or stops
+Use the on-drag-start and on-drag-end events to call functions whenever the dragging starts or stops
 ```html
 <!-- Calls a function on start and stop -->
-<div drag-scroll onDragStart="handleDragStart()" onDragEnd="handleDragEnd()">
+<div drag-scroll on-drag-start="handleDragStart()" on-drag-end="handleDragEnd()">
 ```
 
 
