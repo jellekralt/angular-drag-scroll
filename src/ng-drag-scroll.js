@@ -32,6 +32,7 @@
 
                 // Set event listeners
                 $element.on('mousedown', handleMouseDown);
+                $element.on('touchstart', handleTouchStart);
 
                 // Set destroy listener
                 $scope.$on('$destroy', destroy);
@@ -42,6 +43,9 @@
                 function setDragListeners () {
                     angular.element($window).on('mouseup', handleMouseUp);
                     angular.element($window).on('mousemove', handleMouseMove);
+
+                    angular.element($window).on('touchend', handleTouchEnd);
+                    angular.element($window).on('touchmove', handleTouchMove);
                 }
 
                 /**
@@ -50,6 +54,9 @@
                 function removeDragListeners () {
                     angular.element($window).off('mouseup', handleMouseUp);
                     angular.element($window).off('mousemove', handleMouseMove);
+
+                    angular.element($window).off('touchend', handleTouchEnd);
+                    angular.element($window).off('touchmove', handleTouchMove);
                 }
 
                 /**
@@ -57,8 +64,8 @@
                  * @param {object} e MouseDown event
                  */
                 function handleMouseDown (e) {
-                    if(enabled){
-                        for (var i= 0; i<excludedClasses.length; i++) {
+                    if (enabled) {
+                        for (var i = 0; i < excludedClasses.length; i++) {
                             if (angular.element(e.target).hasClass(excludedClasses[i])) {
                                 return false;
                             }
@@ -89,8 +96,8 @@
                  * @param {object} e MouseUp event
                  */
                 function handleMouseUp (e) {
-                    if(enabled){
-                        var selectable = (e.target.attributes && 'drag-scroll-text' in e.target.attributes);
+                    if (enabled) {
+                        var selectable = ('drag-scroll-text' in e.target.attributes);
                         var withinXConstraints = (e.clientX >= (startClientX - allowedClickOffset) && e.clientX <= (startClientX + allowedClickOffset));
                         var withinYConstraints = (e.clientY >= (startClientY - allowedClickOffset) && e.clientY <= (startClientY + allowedClickOffset));
 
@@ -98,7 +105,7 @@
                         pushed = false;
 
                         // Check if cursor falls within X and Y axis constraints
-                        if(selectable && withinXConstraints && withinYConstraints) {
+                        if (selectable && withinXConstraints && withinYConstraints) {
                             // If so, select the text inside the target element
                             selectText(e.target);
                         }
@@ -117,17 +124,89 @@
                  * @param {object} e MouseMove event
                  */
                 function handleMouseMove (e) {
-                    if(enabled){
+                    if (enabled) {
                         if (pushed) {
-                            if(!axis || axis === 'x') {
+                            if (!axis || axis === 'x') {
                                 $element[0].scrollLeft -= (-lastClientX + (lastClientX = e.clientX));
                             }
-                            if(!axis || axis === 'y') {
+                            if (!axis || axis === 'y') {
                                 $element[0].scrollTop -= (-lastClientY + (lastClientY = e.clientY));
                             }
                         }
 
                         e.preventDefault();
+                    }
+                }
+
+                /**
+                 * Handles touchstart event
+                 * @param {object} e TouchStart event
+                 */
+                function handleTouchStart (e) {
+                    if (enabled) {
+                        for (var i = 0; i < excludedClasses.length; i++) {
+                            if (angular.element(e.target).hasClass(excludedClasses[i])) {
+                                return false;
+                            }
+                        }
+
+                        $scope.$apply(function() {
+                            onDragStart($scope);
+                        });
+
+                        // Set mouse drag listeners
+                        setDragListeners();
+
+                        // Set 'pushed' state
+                        pushed = true;
+                        lastClientX = startClientX = e.touches[0].clientX;
+                        lastClientY = startClientY = e.touches[0].clientY;
+
+                        clearSelection();
+                    }
+                }
+
+                /**
+                 * Handles touchend event
+                 * @param {object} e TouchEnd event
+                 */
+                function handleTouchEnd (e) {
+                    if (enabled) {
+                        var selectable = ('drag-scroll-text' in e.target.attributes);
+                        var withinXConstraints = (e.changedTouches[0].clientX >= (startClientX - allowedClickOffset) && e.changedTouches[0].clientX <= (startClientX + allowedClickOffset));
+                        var withinYConstraints = (e.changedTouches[0].clientY >= (startClientY - allowedClickOffset) && e.changedTouches[0].clientY <= (startClientY + allowedClickOffset));
+
+                        // Set 'pushed' state
+                        pushed = false;
+
+                        // Check if cursor falls within X and Y axis constraints
+                        if (selectable && withinXConstraints && withinYConstraints) {
+                            // If so, select the text inside the target element
+                            selectText(e.target);
+                        }
+
+                        $scope.$apply(function() {
+                            onDragEnd($scope);
+                        });
+
+                        removeDragListeners();
+                    }
+                }
+
+                /**
+                 * Handles touchmove event
+                 * @param {object} e TouchMove event
+                 */
+                function handleTouchMove (e) {
+                    if (enabled) {
+                        if (pushed) {
+                            if (!axis || axis === 'x') {
+                                $element[0].scrollLeft -= (-lastClientX + (lastClientX = e.changedTouches[0].clientX));
+                            }
+                            if (!axis || axis === 'y') {
+                                $element[0].scrollTop -= (-lastClientY + (lastClientY = e.changedTouches[0].clientY));
+                            }
+                        }
                     }
                 }
 
@@ -138,6 +217,10 @@
                     $element.off('mousedown', handleMouseDown);
                     angular.element($window).off('mouseup', handleMouseUp);
                     angular.element($window).off('mousemove', handleMouseMove);
+
+                    $element.on('touchstart', handleTouchStart);
+                    angular.element($window).off('touchend', handleTouchEnd);
+                    angular.element($window).off('touchmove', handleTouchMove);
                 }
 
                 /**
@@ -162,12 +245,12 @@
                  */
                 function clearSelection () {
                     if ($window.getSelection) {
-                        if ($window.getSelection().empty) {  // Chrome
+                        if ($window.getSelection().empty) { // Chrome
                             $window.getSelection().empty();
-                        } else if ($window.getSelection().removeAllRanges) {  // Firefox
+                        } else if ($window.getSelection().removeAllRanges) { // Firefox
                             $window.getSelection().removeAllRanges();
                         }
-                    } else if ($document.selection) {  // IE?
+                    } else if ($document.selection) { // IE?
                         $document.selection.empty();
                     }
                 }
